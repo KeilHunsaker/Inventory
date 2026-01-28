@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\Categories\Tables;
+namespace App\Filament\Resources\Users\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 
-class CategoriesTable
+class UsersTable
 {
     public static function configure(Table $table): Table
     {
@@ -18,10 +16,12 @@ class CategoriesTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
-                TextColumn::make('slug')
+                TextColumn::make('email')
+                    ->label('Email address')
                     ->searchable(),
-                IconColumn::make('is_visible')
-                    ->boolean(),
+                TextColumn::make('email_verified_at')
+                    ->dateTime()
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -30,14 +30,12 @@ class CategoriesTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('two_factor_confirmed_at')
+                    ->dateTime()
+                    ->sortable(),
             ])
             ->filters([
-                TernaryFilter::make('is_visible')
-                    ->label('Visibility')
-                    ->boolean()
-                    ->trueLabel('Visible Categories')
-                    ->falseLabel('Hidden Categories')
-                    ->native(false),
+                //
             ])
             ->recordActions([
                 EditAction::make(),

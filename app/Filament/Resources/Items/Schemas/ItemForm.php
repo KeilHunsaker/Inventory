@@ -2,9 +2,12 @@
 
 namespace App\Filament\Resources\Items\Schemas;
 
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
+use App\Enums\ItemStatus;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Schemas\Schema;
 
 class ItemForm
@@ -38,9 +41,18 @@ class ItemForm
                     ->numeric()
                     ->prefix('$'),
                 TextInput::make('notes'),
-                TextInput::make('status')
-                    ->required()
-                    ->default('draft'),
+                //                TextInput::make('status')
+                //                    ->required()
+                //                    ->default('draft'),
+                ToggleButtons::make('status')
+                    ->options(ItemStatus::class)
+                    ->inline()
+                    ->default(ItemStatus::Draft)
+                    ->required(),
+                Toggle::make('is_visible')
+                    ->default(true)
+                    ->label('Visible')
+                    ->required(),
             ]);
     }
 }

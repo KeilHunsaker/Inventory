@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->decimal('price', 10, 2);
             $table->string('notes')->nullable();
             $table->string('status')->default('draft');
+            $table->boolean('is_visible')->default(true);
             $table->timestamps();
         });
     }

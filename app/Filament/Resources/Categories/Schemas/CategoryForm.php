@@ -2,14 +2,14 @@
 
 namespace App\Filament\Resources\Categories\Schemas;
 
-use Filament\Schemas\Schema;
-use Illuminate\Support\Str;
-use Filament\Schemas\Components\Utilities\Set;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 
 // Explicitly import the components we need
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Schema;
+use Illuminate\Support\Str;
 
 class CategoryForm
 {
@@ -37,7 +37,7 @@ class CategoryForm
 
                 // Visibility Toggle
                 Toggle::make('is_visible')
-                    ->label('Visible to Customers')
+                    ->label('Visible')
                     ->default(true),
             ]);
     }
